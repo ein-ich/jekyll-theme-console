@@ -9,14 +9,11 @@ layout: default
   <ul>
     {%- for post in site.posts -%}
     <li>
-      {% assign newest_post = site.posts.first %}
-{% for post in site.posts %}
-  {% if post == newest_post %}
-    [ new ] <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-  {% else %}
-    <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-  {% endif %}
-{% endfor %}
+      {% if forloop.first %}
+        [ new ] <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      {% else %}
+        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      {% endif %}
     </li>
     {%- endfor -%}
   </ul>
